@@ -56,6 +56,6 @@ ansible -i inventory mediawiki-playbook.yml
 ```
 
 Check all the tasks have completed successfully
-MediaWIKI-Installation-Runbook\Images\Screenshot (2).png
+https://github.com/Champab66/MediaWIKI-Installation-Runbook/blob/98463359284b5e03a3f70ce4ea5de298a220b0ad/Images/Screenshot%20(2).png
 
 ## 3. TroubleSooting 
