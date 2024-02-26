@@ -48,10 +48,14 @@ git clone https://github.com/Champab66/MediaWIKI-Installation-Runbook.git
 
 2.a Install ansible on azure VM using below steps:
  
-2.b Create ansible inventory
+2.b Create ansible inventory, playbook and mediawiki.conf.j2 present inside the Ansible folder of the GIT repo.
 
-2.c Create ansible playbook
+Run the ansible playbook
+```
+ansible -i inventory mediawiki-playbook.yml
+```
 
-2.d Create 
+Check all the tasks have completed successfully
+MediaWIKI-Installation-Runbook\Images\Screenshot (2).png
 
 ## 3. TroubleSooting 
