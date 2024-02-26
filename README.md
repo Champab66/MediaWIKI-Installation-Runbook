@@ -56,8 +56,9 @@ ansible -i inventory mediawiki-playbook.yml
 ```
 
 Check all the tasks have completed successfully
-MediaWIKI-Installation-Runbook\Images\Screenshot (2).png
+https://github.com/Champab66/MediaWIKI-Installation-Runbook/blob/98463359284b5e03a3f70ce4ea5de298a220b0ad/Images/Screenshot%20(2).png
 
+<<<<<<< HEAD
 Check apache2 and mysql is running
 ```
 sudo systemctl status apache2
@@ -72,3 +73,6 @@ http://your-vm-public-ip//mediawiki-1.41.0
 ```
 
 ## 3. TroubleSooting 
+=======
+## 3. TroubleSooting 
+>>>>>>> 8d36f5767320e6e81adffe0682d5cbfe6f898a8f
