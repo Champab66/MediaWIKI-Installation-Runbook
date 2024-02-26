@@ -75,7 +75,7 @@
       notify: Restart Apache
 
     - name: Enable Apache site for MediaWiki
-      Acommand: a2ensite mediawiki.conf
+      command: a2ensite mediawiki.conf
       notify: Restart Apache
 
   handlers:
