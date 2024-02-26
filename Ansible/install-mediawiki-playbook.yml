@@ -1,6 +1,6 @@
 --
 - name: Install and configure MediaWiki on Ubuntu
-  hosts: all
+  hosts: targer_server
   become: yes  # Run tasks as sudo
 
   tasks:
