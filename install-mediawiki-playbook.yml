@@ -1,0 +1,87 @@
+--
+- name: Install and configure MediaWiki on Ubuntu
+  hosts: all
+  become: yes  # Run tasks as sudo
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - apache2
+          - php
+          - libapache2-mod-php
+          - php-mysql
+          - php-xml
+          - php-mbstring
+          - mariadb-server
+          - mariadb-client
+        state: present
+
+    - name: Start and enable Apache and MariaDB services
+      systemd:
+        name: "{{ item }}"
+        state: started
+        enabled: yes
+
+      loop:
+        - apache2
+        - mariadb
+
+    - name: Configure MariaDB for MediaWiki
+      mysql_db:
+        name: mediawiki
+        state: present
+        login_user: root
+        login_password: toor66
+      become_user: root
+      environment:
+        ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
+
+    - name: Create MariaDB user for MediaWiki
+      mysql_user:
+        name: mediawiki
+        password: kumabhiii
+        login_user: root
+        login_password: toor66
+        host: localhost
+        priv: 'mediawiki.*:ALL'
+
+      environment:
+        ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
+
+    - name: Download MediaWiki
+      get_url:
+        url: "https://releases.wikimedia.org/mediawiki/1.41/mediawiki-1.41.0.tar.gz"
+        dest: "/tmp/mediawiki.tar.gz"
+
+    - name: Extract MediaWiki
+      ansible.builtin.unarchive:
+        src: "/tmp/mediawiki.tar.gz"
+        dest: "/var/www/html/"
+        remote_src: yes
+
+    - name: Set permissions for MediaWiki
+      ansible.builtin.file:
+        path: "/var/www/html/mediawiki"
+        state: directory
+        owner: www-data
+        group: www-data
+        recurse: yes
+
+    - name: Configure Apache for MediaWiki
+      template:
+        src: "mediawiki.conf.j2"
+        dest: "/etc/apache2/sites-available/mediawiki.conf"
+      notify: Restart Apache
+
+    - name: Enable Apache site for MediaWiki
+      Acommand: a2ensite mediawiki.conf
+      notify: Restart Apache
+
+  handlers:
+    - name: Restart Apache
+      systemd:
+        name: apache2
+        state: restarted
+
+
