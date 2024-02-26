@@ -32,7 +32,7 @@
         name: mediawiki
         state: present
         login_user: root
-        login_password: toor66
+        login_password: <your user password>
       become_user: root
       environment:
         ANSIBLE_PYTHON_INTERPRETER: /usr/bin/python3
@@ -40,9 +40,9 @@
     - name: Create MariaDB user for MediaWiki
       mysql_user:
         name: mediawiki
-        password: kumabhiii
+        password: <your-password>
         login_user: root
-        login_password: toor66
+        login_password: <your user password>
         host: localhost
         priv: 'mediawiki.*:ALL'
 
