@@ -8,7 +8,12 @@ This is a runbook guide that helps to deploy MediaWiki using Terraform and Ansib
 1. Azure account to create azure VM using terraform 
 2. Terraform installed
 3. Ansible installed
-
+4. Target VM
+   
+Note:
+1. This runbook uses Ubuntu 18.04-LTS VM image as target server.Hence commands are written accordingly
+2. To install MediaWiki 1.31,  PHP ≥ 7.0 is needed and to install MediaWiki 1.35 and higher, PHP ≥ 7.3 is needed
+   
 ## Provision Infrastructure using Terraform
 
 ---
@@ -63,8 +68,15 @@ cd MediaWIKI-Installation-Runbook
 ---
 
 ### Install ansible on azure VM using below steps:
-1.a 
-1.b
+```
+sudo apt update
+```
+```
+sudo apt-add-repository ppa:ansible/ansible
+```
+```
+sudo apt install ansible
+```
  
 2. Create ansible inventory, playbook and mediawiki.conf.j2 present inside the Ansible folder of the GIT repo.
 
